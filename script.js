@@ -84,6 +84,58 @@ window.addEventListener("load", ()=>{
     let left = document.getElementById("left")
     let right = document.getElementById("right")
 
-    left.addEventListener("click", () => rotateImage(false))
-    right.addEventListener("click", () => rotateImage(true))
+    if(left && right){
+        left.addEventListener("click", () => rotateImage(false))
+        right.addEventListener("click", () => rotateImage(true))
+    }
 })
+
+
+function validateForm(){
+
+    var userName = document.getElementById("firstname");
+    var email = document.getElementById("contactmail");
+    var message = document.getElementById("message");
+
+    userName.style.borderColor = "white";
+    email.style.borderColor = "white";
+    message.style.borderColor = "white";
+
+    var final = `<span class="poppins-semi f1-5 sucess-message white" onclick="hide(this)">`
+    var error = document.getElementById("contacterror");
+    var send = false;
+
+    if(userName.value.length == 0){
+        userName.style.borderColor = "red";
+        final += `Full Name Cannot Be missing <br><br>`;
+        send = true;
+    }
+
+    if(!/^([\w-\.*]+@([\w-]+\.)+[\w-]{2,4})?$/.test(email.value)){
+        email.style.borderColor = "red";
+        final += `email must be in format abc@mail.com <br><br>`;
+        send = true;
+    }
+
+    if(message.value.length < 10){
+        message.style.borderColor = "red";
+        final += `Message must be at least 10 characters long`;
+        send = true;
+    }
+
+    final += `</span>`;
+
+    error.innerHTML += final;
+
+    if(send){
+        setInterval(() => {
+            error.innerHTML = ""
+        }, 6000);
+    }
+    else{
+        error.innerHTML = ""
+    }
+
+    return false;
+
+}

@@ -27,6 +27,9 @@
                 <li class="nav-item f1-5 poppins-semi white unselected"><a href="./contact-us/index.html">Contact Us</a>
                     <div></div>
                 </li>
+                <li class="nav-item f1-5 poppins-semi white unselected"><a href="./about/index.html">About us</a>
+                    <div></div>
+                </li>
             </ul>
             <a href="#"  class="main-button nav-btn f1-5 poppins-semi black"><span class="">Book Free Call</span></a>
         </nav>
@@ -264,20 +267,21 @@
         <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
         <section class="grid-container" id="contact-form">
             <h2 class="poppins-bold f3">Contact Us</h2>
-            <form action="" method="POST" target="dummyframe" id="contact">
+            <form action="" onsubmit="return validateForm()" method="" id="contact">
+                <div id="contacterror"></div>
                 <div class="input">
                     <label for="Name" class="poppins-semi f1-75">Full Name</label>
-                    <input class="poppins-bold f1-5 white" type="text" name="firstname" id="firstname" required placeholder="John Doe">
+                    <input class="poppins-bold f1-5 white" type="text" name="firstname" id="firstname" placeholder="John Doe">
                     <span class="lato f1-5 red" id="error1"></span>
                 </div>
                 <div class="input">
                     <label for="contactmail" class="poppins-semi f1-75">E-mail</label>
-                    <input class="poppins-bold f1-5 white" type="email" name="contactmail" id="contactmail" required placeholder="email@email.com">
+                    <input class="poppins-bold f1-5 white" type="email" name="contactmail" id="contactmail" placeholder="email@email.com">
                     <span class="lato f1-5 red" id="error2"></span>
                 </div>
                 <div class="input">
                     <label class="poppins-semi f1-75 white" for="message">Your Message</label>
-                    <textarea class="poppins-semi f1-5" name="message" id="message" cols="30" rows="10" required placeholder="Your Message"></textarea>
+                    <textarea class="poppins-semi f1-5" name="message" id="message" cols="30" rows="10" placeholder="Your Message"></textarea>
                 </div>
                 <input type="submit" value="Send Message" class="cu-form-a secondary-button poppins-semi f1-5 white">
             </form>
@@ -337,40 +341,13 @@
                 
                 if(domain == ""){
 
-                    $.post("webform.php", {userName:userName, email:email, message:message}, function(data){
-                        console.log(data);
-                        var array = JSON.parse(data);
-                        if(array[0] != ""){
-                            document.getElementById("error1").innerHTML = array[0];
-                            
-                        }
-                        if(array[1] != ""){
-                            document.getElementById("error2").innerHTML = array[1];
-                        }
-                        if(!array[2]){
-                            document.getElementById("contact").innerHTML += `<span class="poppins-semi f1-5 sucess-message black" onclick="hide(this)">Massage Sent Sucesfully</span>`;
-                        }
-                    })
+                    
                 
                 }
                 
                 else{
                     
-                    $.post("auditform.php", {domain:domain, domainmail:domainmail}, function(data){
-                        console.log(data);
-                        var array = JSON.parse(data);
-                        if(array[0] != ""){
-                            document.getElementById("derror1").innerHTML = array[0];
-                            console.log(array[0]);
-                        }
-                        if(array[1] != ""){
-                            document.getElementById("derror2").innerHTML = array[1];
-                            console.log(array[1]);
-                        }
-                        if(!array[2]){
-                            document.getElementById("contact").innerHTML += `<span class="poppins-semi f1-5 sucess-message black" onclick="hide(this)">Massage Sent Sucesfully</span>`;
-                        }
-                    })
+                    
                 }
               }
             )
